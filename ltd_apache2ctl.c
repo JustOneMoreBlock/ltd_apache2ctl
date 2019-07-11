@@ -25,26 +25,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define MAX_ARG_LEN 16
 
 int main(int argc, char *argv[]) {
-  int apache_return_val; 
+  int red5_return_val; 
   if( argc > 1 ) {
-    if( strncmp( argv[1], "configtest", MAX_ARG_LEN ) == 0 ) {
-      apache_return_val = system( "/usr/sbin/apache2ctl configtest" );
-      return apache_return_val;
-    } else
     if( strncmp( argv[1], "restart", MAX_ARG_LEN ) == 0 ) {
-      apache_return_val = system( "/usr/sbin/apache2ctl configtest" );
-      if( apache_return_val == 0 ) {
-        apache_return_val = system( "/usr/sbin/apache2ctl restart" );
-        if( apache_return_val == 0 ) printf("Restart successful\n");
+      if( red5_return_val == 0 ) {
+        red5_return_val = system( "/etc/init.d/red5 stop" );
+        red5_return_val = system( "/etc/init.d/red5 start" );
+        if( red5_return_val == 0 ) printf("Restart successful\n");
         else printf("Restart was problematic. Please check error messages, fix the problem and try again.\n");
-        return apache_return_val;
+        return red5_return_val;
       } else {
         printf("\n\nThe configuration files have an error. Refusing to restart apache until the errors are corrected.\n\n");      
       }
-      return apache_return_val;
+      return red5_return_val;
     }
   }
 
-  printf( "Usage: %s configtest|restart\n", argv[0]);
+  printf( "Usage: %s restart\n", argv[0]);
   return 0;
 }
