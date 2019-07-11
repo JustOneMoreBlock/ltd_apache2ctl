@@ -1,16 +1,15 @@
 # Set this variable to the name of the group that is allowed to restart apache.
-webadmingroup = webadmin
+webadmingroup = nobody
 
-all: ltd_apache2ctl
+all: red5ctl
 
-ltd_apache2ctl:
-	gcc ltd_apache2ctl.c -o ltd_apache2ctl
+red5ctl:
+	gcc red5ctl.c -o red5ctl
 
-install: ltd_apache2ctl
-	install -m 6550 -g $(webadmingroup) -o root ltd_apache2ctl /usr/local/bin
+install: red5ctl
+	install -m 6550 -g $(webadmingroup) -o root red5ctl /usr/local/bin
 
 .PHONY: install
 
 clean:
-	rm ltd_apache2ctl
-
+	rm red5ctl
