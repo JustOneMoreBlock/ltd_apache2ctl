@@ -32,10 +32,10 @@ int main(int argc, char *argv[]) {
         red5_return_val = system( "/etc/init.d/red5 stop" );
         red5_return_val = system( "/etc/init.d/red5 start" );
         if( red5_return_val == 0 ) printf("Restart successful\n");
-        else printf("Restart was problematic. Please check error messages, fix the problem and try again.\n");
+        else printf("Restart was problematic. Contact Cory. Please check error messages, fix the problem and try again.\n");
         return red5_return_val;
       } else {
-        printf("\n\nThe configuration files have an error. Refusing to restart apache until the errors are corrected.\n\n");      
+        printf("\n\nThe configuration files have an error. Refusing to restart red5 until the errors are corrected.\n\n");      
       }
       return red5_return_val;
     }
